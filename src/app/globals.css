@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand green */
+  --green-700: #4e8a3c;
+  --green-500: #82be5b;
+  --green-200: #dceecb;
+  --green-50: #edf3e4;
+
+  /* Brand pink */
+  --pink-600: #ee6fa0;
+  --pink-500: #f78bb2;
+  --pink-100: #fce3ec;
+
+  /* Neutrals */
+  --bg: #faf9f5;
+  --surface: #ffffff;
+  --border: #ececee;
+  --text-primary: #1f2421;
+  --text-secondary: #7a8079;
+  --text-muted: #a6aba4;
+
+  /* Semantic */
+  --danger: #e5484d;
+  --danger-bg: #fdecec;
+  --warning: #c98a2e;
+  --warning-bg: #fbf1e1;
+
+  --shadow-card: 0 2px 8px rgba(31, 36, 33, 0.06);
+  --font-poppins: "Poppins", Inter, -apple-system, "Segoe UI", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-green-700: var(--green-700);
+  --color-green-500: var(--green-500);
+  --color-green-200: var(--green-200);
+  --color-green-50: var(--green-50);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-pink-600: var(--pink-600);
+  --color-pink-500: var(--pink-500);
+  --color-pink-100: var(--pink-100);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+
+  --font-sans: var(--font-poppins);
+
+  --shadow-card: var(--shadow-card);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-pink-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.header-gradient {
+  background: linear-gradient(to bottom, var(--color-green-50), var(--color-bg));
 }
