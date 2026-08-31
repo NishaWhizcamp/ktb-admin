@@ -6,6 +6,8 @@ Edge Functions).
 
 Scope is strictly notification management — see "Scope" below.
 
+Add Notification type
+
 ## Stack
 
 - Next.js (App Router, `output: 'export'`) — no server runtime at all in
