@@ -6,7 +6,7 @@ Edge Functions).
 
 Scope is strictly notification management — see "Scope" below.
 
-Add Notification type
+Add Notification type added
 
 ## Stack
 
