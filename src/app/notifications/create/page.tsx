@@ -6,13 +6,14 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
 import { RadioPills } from "@/components/ui/RadioPills";
+import { Select } from "@/components/ui/Select";
 import { Modal } from "@/components/ui/Modal";
 import { FileUpload } from "@/components/notifications/FileUpload";
 import { useToast } from "@/components/ui/Toast";
 import { sendPushNotification } from "@/lib/notifications/api";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/lib/constants";
-import type { NotificationAudience } from "@/lib/supabase/types";
+import type { NotificationAudience, NotificationType } from "@/lib/supabase/types";
 import type { Dictionary } from "@/lib/i18n/translations/en";
 
 function buildAudienceOptions(
@@ -28,6 +29,14 @@ function buildAudienceOptions(
   ];
 }
 
+const NOTIFICATION_TYPES: NotificationType[] = [
+  "Recipe",
+  "Blog",
+  "Video",
+  "Tip",
+  "Season Calendar",
+];
+
 export default function CreateNotificationPage() {
   const router = useRouter();
   const { showToast } = useToast();
@@ -37,6 +46,7 @@ export default function CreateNotificationPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [audience, setAudience] = useState<NotificationAudience>("all");
+  const [type, setType] = useState<NotificationType>("Recipe");
   const [file, setFile] = useState<File | null>(null);
 
   const [errors, setErrors] = useState<{ title?: string; description?: string }>({});
@@ -70,6 +80,7 @@ export default function CreateNotificationPage() {
         audience,
         title: title.trim(),
         description: description.trim(),
+        type,
         image: file,
       });
 
@@ -134,6 +145,19 @@ export default function CreateNotificationPage() {
             onChange={setAudience}
           />
 
+          <Select
+            id="type"
+            label={dict.notificationCreate.typeLabel}
+            value={type}
+            onChange={(e) => setType(e.target.value as NotificationType)}
+          >
+            {NOTIFICATION_TYPES.map((option) => (
+              <option key={option} value={option}>
+                {dict.enums.notificationType[option]}
+              </option>
+            ))}
+          </Select>
+
           <FileUpload
             file={file}
             onSelect={setFile}
@@ -179,6 +203,10 @@ export default function CreateNotificationPage() {
           <div>
             <p className="text-xs font-medium text-text-muted mb-0.5">{dict.notificationCreate.confirmAudienceField}</p>
             <p className="text-sm text-text-primary font-medium">{dict.enums.audience[audience]}</p>
+          </div>
+          <div>
+            <p className="text-xs font-medium text-text-muted mb-0.5">{dict.notificationCreate.confirmTypeField}</p>
+            <p className="text-sm text-text-primary font-medium">{dict.enums.notificationType[type]}</p>
           </div>
           {file && (
             <div>

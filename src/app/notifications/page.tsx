@@ -22,7 +22,7 @@ import { useToast } from "@/components/ui/Toast";
 import { useDebouncedValue } from "@/lib/useDebouncedValue";
 import { formatDateTime } from "@/lib/format";
 import { deleteNotification, listNotifications } from "@/lib/notifications/api";
-import { audienceBadgeTone, statusBadgeTone } from "@/lib/notifications/labels";
+import { audienceBadgeTone, statusBadgeTone, typeBadgeTone } from "@/lib/notifications/labels";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { PAGE_SIZE } from "@/lib/constants";
 import type {
@@ -175,6 +175,7 @@ export default function NotificationsListPage() {
                   <Th>{dict.notificationsList.columns.title}</Th>
                   <Th>{dict.notificationsList.columns.description}</Th>
                   <Th>{dict.notificationsList.columns.audience}</Th>
+                  <Th>{dict.notificationsList.columns.type}</Th>
                   <Th>{dict.notificationsList.columns.image}</Th>
                   <Th>{dict.notificationsList.columns.status}</Th>
                   <Th>{dict.notificationsList.columns.created}</Th>
@@ -184,7 +185,7 @@ export default function NotificationsListPage() {
               <tbody>
                 {loading &&
                   Array.from({ length: 6 }).map((_, i) => (
-                    <TableRowSkeleton key={i} columns={7} />
+                    <TableRowSkeleton key={i} columns={8} />
                   ))}
 
                 {!loading && !error && rows.length > 0 &&
@@ -203,6 +204,15 @@ export default function NotificationsListPage() {
                         <Badge tone={audienceBadgeTone[row.audience]}>
                           {dict.enums.audience[row.audience]}
                         </Badge>
+                      </td>
+                      <td className="px-4 py-3">
+                        {row.type ? (
+                          <Badge tone={typeBadgeTone[row.type]}>
+                            {dict.enums.notificationType[row.type]}
+                          </Badge>
+                        ) : (
+                          <span className="text-text-muted">—</span>
+                        )}
                       </td>
                       <td className="px-4 py-3">
                         <AttachmentCell imagePath={row.image_path} imageUrl={row.image_url} />

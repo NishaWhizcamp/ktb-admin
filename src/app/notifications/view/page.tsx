@@ -12,7 +12,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { useToast } from "@/components/ui/Toast";
 import { formatDateTime } from "@/lib/format";
 import { deleteNotification, getAdminEmail, getNotification } from "@/lib/notifications/api";
-import { audienceBadgeTone, statusBadgeTone } from "@/lib/notifications/labels";
+import { audienceBadgeTone, statusBadgeTone, typeBadgeTone } from "@/lib/notifications/labels";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import type { NotificationRow } from "@/lib/supabase/types";
 
@@ -129,6 +129,15 @@ function ViewNotificationContent() {
               <Badge tone={audienceBadgeTone[notification.audience]}>
                 {dict.enums.audience[notification.audience]}
               </Badge>
+            </Field>
+            <Field label={dict.notificationView.typeLabel}>
+              {notification.type ? (
+                <Badge tone={typeBadgeTone[notification.type]}>
+                  {dict.enums.notificationType[notification.type]}
+                </Badge>
+              ) : (
+                "—"
+              )}
             </Field>
             <Field label={dict.notificationView.createdByLabel}>{creatorEmail ?? "—"}</Field>
             <Field label={dict.notificationView.createdDateLabel}>

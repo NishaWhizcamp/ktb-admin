@@ -4,6 +4,7 @@ import type {
   NotificationAudience,
   NotificationRow,
   NotificationStatus,
+  NotificationType,
 } from "@/lib/supabase/types";
 
 export interface ListNotificationsParams {
@@ -101,6 +102,7 @@ export interface SendPushNotificationParams {
   audience: NotificationAudience;
   title: string;
   description: string;
+  type: NotificationType;
   image?: File | null;
 }
 
@@ -127,6 +129,7 @@ export async function sendPushNotification({
   audience,
   title,
   description,
+  type,
   image,
 }: SendPushNotificationParams): Promise<SendPushNotificationResult> {
   const body: FormData | Record<string, string> = image
@@ -135,10 +138,11 @@ export async function sendPushNotification({
         formData.append("audience", audience);
         formData.append("title", title);
         formData.append("description", description);
+        formData.append("type", type);
         formData.append("image", image);
         return formData;
       })()
-    : { audience, title, description };
+    : { audience, title, description, type };
 
   const { data, error } = await supabase.functions.invoke("send-push-notification", {
     body,

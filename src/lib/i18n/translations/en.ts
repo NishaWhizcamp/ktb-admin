@@ -43,6 +43,13 @@ export interface Dictionary {
       partial: string;
       failed: string;
     };
+    notificationType: {
+      Recipe: string;
+      Blog: string;
+      Video: string;
+      Tip: string;
+      "Season Calendar": string;
+    };
   };
   notificationsList: {
     pageTitle: string;
@@ -56,6 +63,7 @@ export interface Dictionary {
       title: string;
       description: string;
       audience: string;
+      type: string;
       image: string;
       status: string;
       created: string;
@@ -90,6 +98,7 @@ export interface Dictionary {
     descriptionLabel: string;
     descriptionPlaceholder: string;
     audienceLabel: string;
+    typeLabel: string;
     imageLabel: string;
     imageOptional: string;
     chooseImage: string;
@@ -100,6 +109,7 @@ export interface Dictionary {
     confirmTitle: string;
     confirmTitleField: string;
     confirmAudienceField: string;
+    confirmTypeField: string;
     confirmImageField: string;
     sendingButton: string;
     confirmSendButton: string;
@@ -120,6 +130,7 @@ export interface Dictionary {
     backToListing: string;
     descriptionLabel: string;
     audienceLabel: string;
+    typeLabel: string;
     createdByLabel: string;
     createdDateLabel: string;
     sentDateLabel: string;
@@ -185,6 +196,13 @@ export const en: Dictionary = {
       partial: "Partial",
       failed: "Failed",
     },
+    notificationType: {
+      Recipe: "Recipe",
+      Blog: "Blog",
+      Video: "Video",
+      Tip: "Tip",
+      "Season Calendar": "Season Calendar",
+    },
   },
   notificationsList: {
     pageTitle: "Notifications",
@@ -198,6 +216,7 @@ export const en: Dictionary = {
       title: "Title",
       description: "Description",
       audience: "Audience",
+      type: "Type",
       image: "Image",
       status: "Status",
       created: "Created",
@@ -233,6 +252,7 @@ export const en: Dictionary = {
     descriptionLabel: "Description",
     descriptionPlaceholder: "What should users know?",
     audienceLabel: "Audience",
+    typeLabel: "Type",
     imageLabel: "Image",
     imageOptional: "(optional)",
     chooseImage: "Choose image",
@@ -243,6 +263,7 @@ export const en: Dictionary = {
     confirmTitle: "Send this notification?",
     confirmTitleField: "Title",
     confirmAudienceField: "Audience",
+    confirmTypeField: "Type",
     confirmImageField: "Image",
     sendingButton: "Sending…",
     confirmSendButton: "Confirm & Send",
@@ -263,6 +284,7 @@ export const en: Dictionary = {
     backToListing: "Back to listing",
     descriptionLabel: "Description",
     audienceLabel: "Audience",
+    typeLabel: "Type",
     createdByLabel: "Created By",
     createdDateLabel: "Created Date",
     sentDateLabel: "Sent Date",

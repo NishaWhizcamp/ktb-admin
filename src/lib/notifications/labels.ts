@@ -1,5 +1,9 @@
 import type { BadgeTone } from "@/components/ui/Badge";
-import type { NotificationAudience, NotificationStatus } from "@/lib/supabase/types";
+import type {
+  NotificationAudience,
+  NotificationStatus,
+  NotificationType,
+} from "@/lib/supabase/types";
 
 // Display text lives in the locale dictionaries (src/lib/i18n/translations) —
 // see dict.enums.audience / dict.enums.status. These tone maps aren't
@@ -11,6 +15,14 @@ export const audienceBadgeTone: Record<NotificationAudience, BadgeTone> = {
   monthly: "pink",
   yearly: "pink",
   expired: "warning",
+};
+
+export const typeBadgeTone: Record<NotificationType, BadgeTone> = {
+  Recipe: "pink",
+  Blog: "green",
+  Video: "warning",
+  Tip: "neutral",
+  "Season Calendar": "green",
 };
 
 export const statusBadgeTone: Record<NotificationStatus, BadgeTone> = {
